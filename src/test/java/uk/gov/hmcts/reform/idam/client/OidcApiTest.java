@@ -7,13 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
-import org.wiremock.spring.ConfigureWireMock;
-import org.wiremock.spring.EnableWireMock;
 import uk.gov.hmcts.reform.idam.client.models.TokenRequest;
 import uk.gov.hmcts.reform.idam.client.models.TokenResponse;
 import uk.gov.hmcts.reform.idam.client.models.UserInfo;
@@ -39,7 +38,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
     properties = { "idam.oidc.use_oidc_api=true" }
 )
 @EnableAutoConfiguration
-@EnableWireMock(@ConfigureWireMock(name = "oidc-api", port = 5051))
+@AutoConfigureWireMock(port = 5051)
 public class OidcApiTest {
 
     private static final String BEARER = "Bearer ";
